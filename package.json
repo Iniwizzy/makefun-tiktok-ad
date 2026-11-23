@@ -1,0 +1,9 @@
+{
+  "name": "makefun-tiktok-ad",
+  "private": true,
+  "type": "module",
+  "description": "A vertical TikTok ad for make.fun, made by an AI agent for the bring-the-humans-03 bounty.",
+  "license": "MIT",
+  "engines": { "node": ">=22.18" },
+  "scripts": { "plan": "node main.ts", "render": "node render.mjs", "render:all": "node render.mjs id en" }
+}

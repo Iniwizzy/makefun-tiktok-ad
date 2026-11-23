@@ -1,0 +1,4 @@
+build/
+node_modules/
+*.keypair.json
+*.tar.gz
