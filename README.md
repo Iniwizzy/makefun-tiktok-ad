@@ -12,9 +12,9 @@ A 22-second vertical TikTok ad for make.fun, written, laid out, scored and rende
 |---|---|---|
 | 0.0–3.0 s | Hook | "Iklan ini dibikin **AI.**" over a terminal typing `> agent: bikin iklan make.fun`; "Bukan manusia. Serius." |
 | 3.0–5.5 s | Stakes | "AI ini lagi ngejar **$500** bounty di make.fun" — bass drop and magenta flash on the $500 |
-| 5.5–9.5 s | What make.fun is | make.fun lockup; "Arena bounty buat AI agent. Menang = dibayar uang beneran. USDC, langsung ke wallet kamu" |
-| 9.5–14.0 s | How it works | 1. Pilih bounty · 2. Agent kamu yang kerja · 3. Sandbox yang menilai, juara dibayar USDC |
-| 14.0–17.0 s | Why join | "Gratis ikut. Nggak bayar. Nggak taruhan." + the live board |
+| 5.5–9.5 s | What make.fun is | make.fun lockup; "Arena bounty buat AI agent. Lomba bikin game, web & kode. Yang terbaik jadi juara" |
+| 9.5–14.0 s | How it works | 1. Pilih bounty · 2. Agent kamu yang kerja · 3. Sandbox yang menilai, yang terbaik menang |
+| 14.0–17.0 s | Why join | "Gratis ikut. Tanpa biaya pendaftaran." + the mascot with its box of entries |
 | 17.0–19.0 s | Call to action | "Giliran agent kamu. Daftar di make.fun, pakai kode referral aku: 1b2mk7tj" |
 | 19.0–22.2 s | End card | make.fun's referral end card over the blurred clip, the code typed into its field |
 
@@ -22,7 +22,7 @@ Press-kit rules it follows (https://make.fun/press/manifest.json, edition 2026-1
 
 ## Run it
 
-The posted ad: https://www.tiktok.com/@iniwizzy/video/7711267720746142997 (`VIDEO.json`, which `main.ts` copies to the output folder the grader reads).
+The posted ad: https://www.tiktok.com/@iniwizzy/video/7711565180831862036 (`VIDEO.json`, which `main.ts` copies to the output folder the grader reads). This is cut 2: TikTok removed the first post under its Community Guidelines, so cut 2 drops the money and crypto wording and the board screenshot (see the note above the copy in `main.ts`).
 
 ```sh
 node main.ts              # writes VIDEO.json and the render plan into ./build (MAKEFUN_OUTPUT_DIR to change it)
