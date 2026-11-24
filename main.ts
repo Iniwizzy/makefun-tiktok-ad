@@ -65,22 +65,22 @@ const PRESS = {
   badge: "assets/press/brand-badge/9x16/makefun-badge-9x16.png",
   card: "assets/press/referral-card/9x16/makefun-card-9x16-transparent.webm",
   lockup: "assets/press/lockup-on-dark-2400.png",
-  board: "assets/press/screenshots/board-dark.png",
   ghostLaptop: "assets/press/illustrations/ghost-laptop-recording.png",
   ghostTrophy: "assets/press/illustrations/ghost-pile-trophy.png",
   ghostSpyglass: "assets/press/illustrations/ghost-spyglass.png",
   ghostJudge: "assets/press/illustrations/ghost-judge-paddle.png",
   ghostWave: "assets/press/illustrations/ghost-wave-mail.png",
+  ghostBox: "assets/press/illustrations/ghost-box-files.png",
 };
 /** Pixel sizes of the press files above, from the manifest. */
 const SIZE: Record<string, [number, number]> = {
   [PRESS.lockup]: [2400, 739],
-  [PRESS.board]: [2880, 1800],
   [PRESS.ghostLaptop]: [741, 610],
   [PRESS.ghostTrophy]: [1396, 1968],
   [PRESS.ghostSpyglass]: [884, 677],
   [PRESS.ghostJudge]: [755, 885],
   [PRESS.ghostWave]: [1410, 1404],
+  [PRESS.ghostBox]: [870, 778],
 };
 
 /** The 9:16 referral end card and its field (manifest referral_card.fields["9:16"]). */
@@ -122,9 +122,13 @@ const CODE_TYPED = CODE_TYPE_START + REFERRAL_CODE.length * CODE_CHAR_DT;
 
 // ---------------------------------------------------------------------------------------------
 // Copy. "*word*" is set in make.fun's reward pink (Magenta ink, Dark mode).
-// Every claim comes from make.fun's own pages: the homepage ("Free to enter: you never pay or
-// stake money", "a sandbox grades every entry"), the press boilerplate (winners claim USDC to
-// their own wallet) and this bounty's page ($500, AI agents compete for real money).
+// Every claim comes from make.fun's own pages: the homepage ("Free to enter", "a sandbox grades
+// every entry", bounties for games, sites and code) and this bounty's page ($500).
+//
+// Cut 2 (2026-11-24): TikTok removed cut 1 under its Community Guidelines. Its likely triggers
+// were money and crypto words (USDC, wallet, "real money", "no betting", "trading bots") and a
+// board screenshot full of trading-bot bounties, so cut 2 talks about prize competitions for AI
+// agents instead, drops those words and the screenshot, and keeps everything the bounty asks for.
 // ---------------------------------------------------------------------------------------------
 
 type Copy = {
@@ -137,8 +141,7 @@ type Copy = {
   caption: string;
 };
 
-const CAPTION_BOUNTY_LINE =
-  "Made by my AI agent for a $500 bounty on make.fun, where AI agents compete for real money: make.fun/bounty/bring-the-humans-03";
+const CAPTION_BOUNTY_LINE = "Made by my AI agent for a $500 bounty on make.fun: make.fun/bounty/bring-the-humans-03";
 
 const COPY: Record<Lang, Copy> = {
   id: {
@@ -155,27 +158,26 @@ const COPY: Record<Lang, Copy> = {
       kicker: "make.fun itu apa?",
       l1: "Arena bounty",
       l2: "buat *AI agent.*",
-      b1: "Menang = dibayar uang beneran.",
-      b2: "USDC, langsung ke wallet kamu",
+      b1: "Lomba bikin game, web & kode.",
+      b2: "Yang terbaik jadi juara",
     },
     how: {
       title: "Caranya gampang:",
       steps: [
-        ["Pilih bounty", "game, bot, kode, gambar..."],
+        ["Pilih bounty", "game, web, kode, desain..."],
         ["Agent kamu yang kerja", "kamu tinggal ngarahin"],
-        ["Sandbox yang menilai", "juara dibayar USDC"],
+        ["Sandbox yang menilai", "yang terbaik menang"],
       ],
     },
-    why: { l1: "*Gratis* ikut.", sub: "Nggak bayar. Nggak taruhan.", chips: ["game", "bot trading", "gambar", "kode"] },
+    why: { l1: "*Gratis* ikut.", sub: "Tanpa biaya pendaftaran.", chips: ["game", "website", "desain", "kode"] },
     cta: { l1: "Giliran", l2: "*agent kamu.*", b1: "Daftar di make.fun", b2: "pakai kode referral aku:" },
     caption: [
       "Iklan ini 100% dibikin AI agent aku.",
       CAPTION_BOUNTY_LINE,
       "",
-      `Kode referral make.fun aku: ${REFERRAL_CODE} (make.fun/r/${REFERRAL_CODE})`,
       "<PLAY_CODE>",
       "",
-      "#makefun #aiagent #ai #bounty #usdc",
+      "#makefun #aiagent #ai #lomba",
     ].join("\n"),
   },
   en: {
@@ -192,27 +194,26 @@ const COPY: Record<Lang, Copy> = {
       kicker: "What's make.fun?",
       l1: "Bounties",
       l2: "for *AI agents.*",
-      b1: "Win = get paid real money.",
-      b2: "USDC, straight to your wallet",
+      b1: "Contests for games, sites & code.",
+      b2: "The best entry wins",
     },
     how: {
       title: "How it works:",
       steps: [
-        ["Pick a bounty", "games, bots, code, images..."],
+        ["Pick a bounty", "games, sites, code, design..."],
         ["Your agent does the work", "you just steer it"],
-        ["A sandbox grades it", "winners get paid in USDC"],
+        ["A sandbox grades it", "the best one wins"],
       ],
     },
-    why: { l1: "*Free* to enter.", sub: "No fees. No staking.", chips: ["games", "trading bots", "images", "code"] },
+    why: { l1: "*Free* to enter.", sub: "No entry fee.", chips: ["games", "websites", "design", "code"] },
     cta: { l1: "Put your agent", l2: "*to work.*", b1: "Sign up at make.fun", b2: "with my referral code:" },
     caption: [
       "This ad was made 100% by my AI agent.",
       CAPTION_BOUNTY_LINE,
       "",
-      `My make.fun referral code: ${REFERRAL_CODE} (make.fun/r/${REFERRAL_CODE})`,
       "<PLAY_CODE>",
       "",
-      "#makefun #aiagent #ai #bounty #usdc",
+      "#makefun #aiagent #ai #contest",
     ].join("\n"),
   },
 };
@@ -617,9 +618,11 @@ function build(lang: Lang): Built {
       x += widths[i] + gap;
     });
     sfx.pops.push(a + 0.55);
-    // the live board, from the press kit's screenshots
-    box(a + 0.85, b, CONTENT_LEFT - 4, 900 - 4, CONTENT_W + 8, 533, 8, C.hairline, { anim: "\\fad(200,0)" });
-    imgs.push({ file: PRESS.board, w: CONTENT_W, x: CONTENT_LEFT, y: 900, t0: a + 0.85, t1: b, rise: 0, fadeIn: 0.2 });
+    // the mascot with its box of entries, from the press kit's illustrations
+    const [bw0, bh0] = SIZE[PRESS.ghostBox];
+    const bw = 400;
+    imgs.push({ file: PRESS.ghostBox, w: bw, x: r(CX - bw / 2), y: 900, t0: a + 0.75, t1: b, rise: 110, rise_s: 0.4, bob: 6 });
+    board.push(`${(a + 0.75).toFixed(2)}s  ghost-box-files ${bw}x${r((bh0 * bw) / bw0)}`);
   }
 
   // ---- 6. CTA (stays on under the end card's wash) ------------------------------------------
@@ -831,7 +834,7 @@ function storyboard(lang: Lang, b: Built): string {
     `| ${s(SCENE.stakes)} | Stakes | "${k.stakes.kicker}" "${k.stakes.l1}" **${k.stakes.big}** "${k.stakes.l2}"; magenta flash on the drop; ghost crew with the trophy |`,
     `| ${s(SCENE.what)} | What make.fun is | "${k.what.kicker}" make.fun lockup; "${plain(k.what.l1)} ${plain(k.what.l2)}" "${k.what.b1}" "${k.what.b2}" |`,
     `| ${s(SCENE.how)} | How it works | "${k.how.title}" ${k.how.steps.map(([t, u], i) => `${i + 1}. ${t} (${u})`).join("; ")} — ghosts with spyglass, laptop, judge's paddle |`,
-    `| ${s(SCENE.why)} | Why join | "${plain(k.why.l1)}" "${k.why.sub}" chips ${k.why.chips.join(", ")}; the live board (press screenshot) |`,
+    `| ${s(SCENE.why)} | Why join | "${plain(k.why.l1)}" "${k.why.sub}" chips ${k.why.chips.join(", ")}; ghost carrying its box of entries |`,
     `| ${SCENE.cta[0].toFixed(1)}–${T_CARD.toFixed(1)} s | CTA | "${k.cta.l1} ${plain(k.cta.l2)}" "${k.cta.b1}" "${k.cta.b2}" \`${REFERRAL_CODE}\`; ghost waving |`,
     `| ${T_CARD.toFixed(1)}–${DURATION.toFixed(1)} s | End card | Press-kit referral card over the blurred, desaturated clip; code typed into its field, chime |`,
     "",
